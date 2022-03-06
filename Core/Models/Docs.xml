@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+	<members name="User">
+		<User>
+			<summary>
+				Модель данных, необходимых для подключения к облаку.
+			</summary>
+		</User>
+		<Dict>
+			<summary>
+				Словарь, содержащий поля и их значения, необходимые для подкючения к облаку.
+			</summary>
+		</Dict>
+	</members>
+</docs>
