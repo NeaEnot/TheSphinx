@@ -12,4 +12,43 @@
 			</summary>
 		</Dict>
 	</members>
+	<members name="Field">
+		<Field>
+			<summary>
+				Модель поля данных аккаунта.
+			</summary>
+		</Field>
+		<Value>
+			<summary>
+				Значение поля.
+			</summary>
+		</Value>
+		<Encrypted>
+			<summary>
+				Необходимо ли шифровать поле.
+			</summary>
+		</Encrypted>
+	</members>
+	<members name="Account">
+		<Account>
+			<summary>
+				Модель, хранящая данные аккаунта.
+			</summary>
+		</Account>
+		<Id>
+			<summary>
+				Уникальный идентификатор аккаунта.
+			</summary>
+		</Id>
+		<Source>
+			<summary>
+				Ресурс, на котором создан аккаунт.
+			</summary>
+		</Source>
+		<Fields>
+			<summary>
+				Поля с информацией об аккаунте.
+			</summary>
+		</Fields>
+	</members>
 </docs>
