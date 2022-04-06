@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+	<members name="INetworkLogic">
+		<INetworkLogic>
+			<summary>
+				Интерфейс работы с облаком.
+			</summary>
+		</INetworkLogic>
+		<Connect>
+			<summary>
+				Подключение к облаку.
+			</summary>
+			<param name="getCode">
+				Делегат, позволяющий запросить код при необходимости.
+			</param>
+		</Connect>
+		<Download>
+			<summary>
+				Скачивание данных из облака.
+			</summary>
+			<param name="path">
+				Путь к файлу хранилища.
+			</param>
+		</Download>
+		<Upload>
+			<summary>
+				Загрузка данных на облако.
+			</summary>
+			<param name="path">
+				Путь к файлу хранилища.
+			</param>
+		</Upload>
+	</members>
+</docs>

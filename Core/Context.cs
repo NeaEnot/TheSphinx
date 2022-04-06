@@ -46,28 +46,38 @@ namespace TheSphinx.Core
         /// <include file='Docs.xml' path='docs/members[@name="Context"]/Load/*'/>
         public static void Load()
         {
-            try
-            {
-                using (StreamReader reader = new StreamReader("storage.dat"))
-                {
-                    string json = reader.ReadToEnd();
-
-                    // Расшифровываем json
-
-                    Storage restored = JsonConvert.DeserializeObject<Storage>(json);
-
-                    // Расшифровываем отдельные поля
-
-                    User = restored.User;
-                    Accounts = restored.Accounts;
-                    IdHelper.currentId = restored.CurrentId;
-                }
-            }
-            catch (Exception ex)
+            FileInfo file = new FileInfo("storage.dat");
+            if (!file.Exists)
             {
                 User = new User();
                 Accounts = new List<Account>();
                 IdHelper.currentId = "0";
+
+                Save();
+            }
+            else
+            {
+                try
+                {
+                    using (StreamReader reader = new StreamReader("storage.dat"))
+                    {
+                        string json = reader.ReadToEnd();
+
+                        // Расшифровываем json
+
+                        Storage restored = JsonConvert.DeserializeObject<Storage>(json);
+
+                        // Расшифровываем отдельные поля
+
+                        User = restored.User;
+                        Accounts = restored.Accounts;
+                        IdHelper.currentId = restored.CurrentId;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Data could not be recovered, possibly an incorrect password.");
+                }
             }
         }
     }
