@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+	<members name="NetworkLogic">
+		<NetworkLogic>
+			<summary>
+				<para>
+					Реализация интерфейса INetworkLogic, предназначенная для сервиса Яндекс.Диск.
+				</para>
+				<para>
+					Для корректной работы у пользователя должны быть заполнены поля token и path - токеном доступа к сервису и путём файла на облаке соответственно.
+				</para>
+			</summary>
+		</NetworkLogic>
+	</members>
+</docs>

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{D7F18975-8007-411C-8B12-7BCBA12DE1A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{D7F18975-8007-411C-8B12-7BCBA12DE1A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexDisk", "YandexDisk\YandexDisk.csproj", "{6F98B3F4-6CA5-4DC3-98B3-D72D95032EBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D7F18975-8007-411C-8B12-7BCBA12DE1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7F18975-8007-411C-8B12-7BCBA12DE1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7F18975-8007-411C-8B12-7BCBA12DE1A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F98B3F4-6CA5-4DC3-98B3-D72D95032EBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F98B3F4-6CA5-4DC3-98B3-D72D95032EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F98B3F4-6CA5-4DC3-98B3-D72D95032EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F98B3F4-6CA5-4DC3-98B3-D72D95032EBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

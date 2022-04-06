@@ -5,12 +5,12 @@ namespace TheSphinx.Core.Models
     /// <include file='Docs.xml' path='docs/members[@name="User"]/User/*'/>
     public class User
     {
-        /// <include file='Docs.xml' path='docs/members[@name="User"]/Dict/*'/>
-        public Dictionary<string, Field> Dict { get; set; }
+        /// <include file='Docs.xml' path='docs/members[@name="User"]/Fields/*'/>
+        public Dictionary<string, Field> Fields { get; set; }
 
         public User()
         {
-            Dict = new Dictionary<string, Field>();
+            Fields = new Dictionary<string, Field>();
         }
     }
 }
