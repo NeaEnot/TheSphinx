@@ -8,7 +8,7 @@
 		</User>
 		<Dict>
 			<summary>
-				Словарь, содержащий поля и их значения, необходимые для подкючения к облаку.
+				Словарь, содержащий поля, необходимые для подкючения к облаку.
 			</summary>
 		</Dict>
 	</members>
@@ -50,5 +50,42 @@
 				Поля с информацией об аккаунте.
 			</summary>
 		</Fields>
+	</members>
+	<members name="Context">
+		<Context>
+			<summary>
+				Статический класс, позволяющий взаимодействовать с локальным хранилищем.
+			</summary>
+		</Context>
+		<StoragePassword>
+			<summary>
+				Пароль от хранилища, можно только задать.
+			</summary>
+		</StoragePassword>
+		<FieldsPassword>
+			<summary>
+				Пароль от зашифрованных полей, можно только задать.
+			</summary>
+		</FieldsPassword>
+		<User>
+			<summary>
+				Данные, необходимые для подключения к облаку.
+			</summary>
+		</User>
+		<Accounts>
+			<summary>
+				Список аккаунтов.
+			</summary>
+		</Accounts>
+		<Save>
+			<summary>
+				Сохранение данных в файле.
+			</summary>
+		</Save>
+		<Load>
+			<summary>
+				Загрузка данных из файла.
+			</summary>
+		</Load>
 	</members>
 </docs>

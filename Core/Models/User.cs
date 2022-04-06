@@ -6,11 +6,11 @@ namespace TheSphinx.Core.Models
     public class User
     {
         /// <include file='Docs.xml' path='docs/members[@name="User"]/Dict/*'/>
-        public Dictionary<string, string> Dict { get; set; }
+        public Dictionary<string, Field> Dict { get; set; }
 
         public User()
         {
-            Dict = new Dictionary<string, string>();
+            Dict = new Dictionary<string, Field>();
         }
     }
 }

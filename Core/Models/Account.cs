@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TheSphinx.Core.Helpers;
 
 namespace TheSphinx.Core.Models
 {
@@ -14,7 +15,25 @@ namespace TheSphinx.Core.Models
 
         public Account()
         {
+            Id = IdHelper.currentId;
+            IdHelper.ToNextId();
+
             Fields = new Dictionary<string, Field>();
+        }
+
+        internal Account Clone()
+        {
+            Account acc = new Account
+            {
+                Id = Id,
+                Source = Source,
+                Fields = new Dictionary<string, Field>()
+            };
+
+            foreach (string key in Fields.Keys)
+                acc.Fields.Add(key, new Field { Value = Fields[key].Value, Encrypted = Fields[key].Encrypted });
+
+            return acc;
         }
     }
 }
