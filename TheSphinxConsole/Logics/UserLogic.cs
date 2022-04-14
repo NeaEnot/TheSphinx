@@ -24,5 +24,25 @@ namespace TheSphinx.TheSphinxConsole.Logics
                 return false;
             }
         }
+
+        internal void ChangeStoragePassword()
+        {
+            string storagePass = Console.ReadLine();
+            Context.Load();
+
+            Context.StoragePassword = storagePass;
+            Context.Save();
+            Context.Load();
+        }
+
+        internal void ChangeFieldsPassword()
+        {
+            string fieldsPass = Console.ReadLine();
+            Context.Load();
+
+            Context.FieldsPassword = fieldsPass;
+            Context.Save();
+            Context.Load();
+        }
     }
 }
