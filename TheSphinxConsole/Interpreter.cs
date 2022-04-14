@@ -31,7 +31,7 @@ namespace TheSphinx.TheSphinxConsole
 
         private ResultStatus ExecuteUnknown(string cmd)
         {
-            switch (cmd)
+            switch (cmd.Split(' ')[0])
             {
                 case "enter":
                     if (userLogic.Enter())
@@ -52,13 +52,19 @@ namespace TheSphinx.TheSphinxConsole
 
         private ResultStatus ExecuteAuthorized(string cmd)
         {
-            switch (cmd)
+            switch (cmd.Split(' ')[0])
             {
-                case "change spass":
-                    userLogic.ChangeStoragePassword();
+                case "chngspass":
+                    userLogic.ChangeStoragePassword(cmd.Remove(0, (cmd + " ").Length));
                     return ResultStatus.Ok;
-                case "change fpass":
-                    userLogic.ChangeFieldsPassword();
+                case "chngfpass":
+                    userLogic.ChangeFieldsPassword(cmd.Remove(0, (cmd + " ").Length));
+                    return ResultStatus.Ok;
+                case "setuserfield":
+                    userLogic.ChangeUserField(cmd.Remove(0, (cmd + " ").Length));
+                    return ResultStatus.Ok;
+                case "deluserfield":
+                    userLogic.ChangeUserField(cmd.Remove(0, (cmd + " ").Length));
                     return ResultStatus.Ok;
                 case "exit":
                     return ResultStatus.Exit;

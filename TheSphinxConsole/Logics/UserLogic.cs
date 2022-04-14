@@ -1,5 +1,6 @@
 ﻿using System;
 using TheSphinx.Core;
+using TheSphinx.Core.Models;
 
 namespace TheSphinx.TheSphinxConsole.Logics
 {
@@ -17,6 +18,8 @@ namespace TheSphinx.TheSphinxConsole.Logics
 
                 Context.Load();
 
+                Console.WriteLine("Done");
+
                 return true;
             }
             catch (Exception ex)
@@ -25,24 +28,55 @@ namespace TheSphinx.TheSphinxConsole.Logics
             }
         }
 
-        internal void ChangeStoragePassword()
+        internal void ChangeStoragePassword(string pass)
         {
-            string storagePass = Console.ReadLine();
             Context.Load();
+            Context.StoragePassword = pass;
 
-            Context.StoragePassword = storagePass;
             Context.Save();
             Context.Load();
+
+            Console.WriteLine("Done");
         }
 
-        internal void ChangeFieldsPassword()
+        internal void ChangeFieldsPassword(string pass)
         {
-            string fieldsPass = Console.ReadLine();
             Context.Load();
+            Context.FieldsPassword = pass;
 
-            Context.FieldsPassword = fieldsPass;
             Context.Save();
             Context.Load();
+
+            Console.WriteLine("Done");
+        }
+
+        internal void ChangeUserField(string prms)
+        {
+            string fieldName = prms.Split(' ')[0];
+            string fieldEnc = prms.Split(' ')[1];
+            string fieldValue = prms.Remove(0, (fieldName + " " + fieldEnc + " ").Length);
+
+            Field field = new Field
+            {
+                Encrypted = fieldEnc == "+",
+                Value = fieldValue
+            };
+
+            if (Context.User.Fields.ContainsKey(fieldName))
+                Context.User.Fields[fieldName] = field;
+            else
+                Context.User.Fields.Add(fieldName, field);
+
+            Console.WriteLine("Done");
+        }
+
+        internal void DeleteUserField(string name)
+        {
+            if (Context.User.Fields.ContainsKey(name))
+            {
+                Context.User.Fields.Remove(name);
+                Console.WriteLine("Done");
+            }
         }
     }
 }
