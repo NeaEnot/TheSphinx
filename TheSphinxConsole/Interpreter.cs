@@ -1,4 +1,5 @@
-﻿using TheSphinx.TheSphinxConsole.Enums;
+﻿using System;
+using TheSphinx.TheSphinxConsole.Enums;
 using TheSphinx.TheSphinxConsole.Logics;
 
 namespace TheSphinx.TheSphinxConsole
@@ -8,12 +9,14 @@ namespace TheSphinx.TheSphinxConsole
         private InterpreterState state;
 
         private UserLogic userLogic;
+        private AccauntLogic accountLogic;
 
         internal Interpreter()
         {
             state = InterpreterState.Unknown;
 
             userLogic = new UserLogic();
+            accountLogic = new AccauntLogic();
         }
 
         internal ResultStatus Execute(string cmd)
@@ -66,6 +69,17 @@ namespace TheSphinx.TheSphinxConsole
                 case "deluserfield":
                     userLogic.ChangeUserField(cmd.Remove(0, (cmd + " ").Length));
                     return ResultStatus.Ok;
+                case "addacc":
+                    string answer = accountLogic.CreateAccaunt(cmd.Remove(0, (cmd + " ").Length));
+                    if (answer != "")
+                    {
+                        Console.WriteLine(answer);
+                        return ResultStatus.Ok;
+                    }
+                    else
+                    {
+                        return ResultStatus.Error;
+                    }
                 case "exit":
                     return ResultStatus.Exit;
                 default:
