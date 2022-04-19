@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TheSphinx.Core;
 using TheSphinx.Core.Models;
 
@@ -20,6 +21,27 @@ namespace TheSphinx.TheSphinxConsole.Logics
             catch (Exception ex)
             {
                 return "";
+            }
+        }
+
+        internal string GetAccauntFields(string id)
+        {
+            string answer = "";
+
+            Account model = Context.Accounts.FirstOrDefault(req => req.Id == id);
+
+            if (model == null)
+            {
+                return "";
+            }
+            else
+            {
+                answer = $"Source:\t{model.Source}\n";
+
+                foreach (string key in model.Fields.Keys)
+                    answer += $"{key}:\t{model.Fields[key]}\n";
+
+                return answer;
             }
         }
     }

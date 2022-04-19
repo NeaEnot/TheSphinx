@@ -55,6 +55,8 @@ namespace TheSphinx.TheSphinxConsole
 
         private ResultStatus ExecuteAuthorized(string cmd)
         {
+            string answer;
+
             switch (cmd.Split(' ')[0])
             {
                 case "chngspass":
@@ -70,7 +72,18 @@ namespace TheSphinx.TheSphinxConsole
                     userLogic.ChangeUserField(cmd.Remove(0, (cmd + " ").Length));
                     return ResultStatus.Ok;
                 case "addacc":
-                    string answer = accountLogic.CreateAccaunt(cmd.Remove(0, (cmd + " ").Length));
+                    answer = accountLogic.CreateAccaunt(cmd.Remove(0, (cmd + " ").Length));
+                    if (answer != "")
+                    {
+                        Console.WriteLine(answer);
+                        return ResultStatus.Ok;
+                    }
+                    else
+                    {
+                        return ResultStatus.Error;
+                    }
+                case "getacc":
+                    answer = accountLogic.GetAccauntFields(cmd.Remove(0, (cmd + " ").Length));
                     if (answer != "")
                     {
                         Console.WriteLine(answer);
