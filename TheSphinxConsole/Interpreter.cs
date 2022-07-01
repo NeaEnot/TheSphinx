@@ -104,6 +104,17 @@ namespace TheSphinx.TheSphinxConsole
                     {
                         return ResultStatus.Error;
                     }
+                case "delacc":
+                    answer = accountLogic.DeleteAcc(cmd.Remove(0, (cmd + " ").Length));
+                    if (answer != "")
+                    {
+                        Console.WriteLine(answer);
+                        return ResultStatus.Ok;
+                    }
+                    else
+                    {
+                        return ResultStatus.Error;
+                    }
                 case "exit":
                     return ResultStatus.Exit;
                 default:

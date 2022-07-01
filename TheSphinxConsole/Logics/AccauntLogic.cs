@@ -78,5 +78,25 @@ namespace TheSphinx.TheSphinxConsole.Logics
                 return answer;
             }
         }
+
+        internal string DeleteAcc(string id)
+        {
+            string answer = "";
+
+            Account model = Context.Accounts.FirstOrDefault(req => req.Id == id);
+
+            if (model == null)
+            {
+                return "";
+            }
+            else
+            {
+                Context.Accounts.Remove(model);
+
+                answer = $"Accaunt {id} has been deleted";
+
+                return answer;
+            }
+        }
     }
 }
