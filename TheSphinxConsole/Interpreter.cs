@@ -10,6 +10,7 @@ namespace TheSphinx.TheSphinxConsole
 
         private UserLogic userLogic;
         private AccauntLogic accountLogic;
+        private NetworkLogic networkLogic;
 
         internal Interpreter()
         {
@@ -17,6 +18,7 @@ namespace TheSphinx.TheSphinxConsole
 
             userLogic = new UserLogic();
             accountLogic = new AccauntLogic();
+            networkLogic = new NetworkLogic();
         }
 
         internal ResultStatus Execute(string cmd)
@@ -109,6 +111,27 @@ namespace TheSphinx.TheSphinxConsole
                     if (answer != "")
                     {
                         Console.WriteLine(answer);
+                        return ResultStatus.Ok;
+                    }
+                    else
+                    {
+                        return ResultStatus.Error;
+                    }
+                case "upload":
+                    answer = networkLogic.Upload();
+                    Console.WriteLine(answer);
+
+                    if (answer == "OK")
+                        return ResultStatus.Ok;
+                    else
+                        return ResultStatus.Error;
+                case "download":
+                    answer = networkLogic.Download();
+                    Console.WriteLine(answer);
+
+                    if (answer == "OK")
+                    {
+                        state = InterpreterState.Unknown;
                         return ResultStatus.Ok;
                     }
                     else

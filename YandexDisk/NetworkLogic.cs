@@ -16,7 +16,8 @@ namespace YandexDisk
 
         public void Connect(Func<string> getCode)
         {
-            diskApi = new DiskHttpApi(Context.User.Fields["token"].Value);
+            if (diskApi == null)
+                diskApi = new DiskHttpApi(Context.User.Fields["token"].Value);
         }
 
         public void Download(string path)
