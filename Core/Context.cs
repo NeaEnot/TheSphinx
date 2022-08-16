@@ -22,11 +22,11 @@ namespace TheSphinx.Core
         /// <include file='Docs.xml' path='docs/members[@name="Context"]/Accounts/*'/>
         public static List<Account> Accounts { get; set; }
 
+        internal static ICrypto Crypto { get; private set; } = new CesarSequence((char)500);
+
         /// <include file='Docs.xml' path='docs/members[@name="Context"]/Save/*'/>
         public static void Save()
         {
-            ICrypto crypto = new CesarSequence((char)500);
-
             using (StreamWriter writer = new StreamWriter("storage.dat"))
             {
                 Storage storage = new Storage
@@ -38,15 +38,15 @@ namespace TheSphinx.Core
 
                 foreach (Field field in storage.User.Fields.Values)
                     if (field.Encrypted)
-                        field.Value = crypto.Encrypt(field.Value, FieldsPassword);
+                        field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
 
                 foreach (Account acc in storage.Accounts)
                     foreach (Field field in acc.Fields.Values)
                         if (field.Encrypted)
-                            field.Value = crypto.Encrypt(field.Value, FieldsPassword);
+                            field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
 
                 string json = JsonConvert.SerializeObject(storage);
-                string data = crypto.Encrypt(json, StoragePassword);
+                string data = Crypto.Encrypt(json, StoragePassword);
                 writer.Write(data);
             }
         }
@@ -54,8 +54,6 @@ namespace TheSphinx.Core
         /// <include file='Docs.xml' path='docs/members[@name="Context"]/Load/*'/>
         public static void Load()
         {
-            ICrypto crypto = new CesarSequence((char)500);
-
             FileInfo file = new FileInfo("storage.dat");
             if (!file.Exists)
             {
@@ -72,17 +70,17 @@ namespace TheSphinx.Core
                     using (StreamReader reader = new StreamReader("storage.dat"))
                     {
                         string data = reader.ReadToEnd();
-                        string json = crypto.Decrypt(data, StoragePassword);
+                        string json = Crypto.Decrypt(data, StoragePassword);
                         Storage restored = JsonConvert.DeserializeObject<Storage>(json);
 
                         foreach (Field field in restored.User.Fields.Values)
                             if (field.Encrypted)
-                                field.Value = crypto.Decrypt(field.Value, FieldsPassword);
+                                field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
 
                         foreach (Account acc in restored.Accounts)
                             foreach (Field field in acc.Fields.Values)
                                 if (field.Encrypted)
-                                    field.Value = crypto.Decrypt(field.Value, FieldsPassword);
+                                    field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
 
                         User = restored.User;
                         Accounts = restored.Accounts;

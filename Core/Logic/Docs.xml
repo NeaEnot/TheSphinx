@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<docs>
+	<members name="AccountLogic">
+		<AccountLogic>
+			<summary>
+				Класс, позволяющий взаимодействовать с аккаунтами в хранилище.
+			</summary>
+		</AccountLogic>
+		<Create>
+			<summary>
+				Добавляет в хранилище новый аккаунт, шифрует поля, помеченные как Encripted.
+			</summary>
+			<param name="model">
+				Добавляемая модель.
+			</param>
+			<param name="password">
+				Пароль для шифрования полей.
+			</param>
+		</Create>
+		<ReadAll>
+			<summary>
+				Возвращает список всех аккаунтов в хранилище.
+			</summary>
+			<returns>
+				Список аккаунтов без полей.
+			</returns>
+		</ReadAll>
+		<Read>
+			<summary>
+				Возвращает аккаунт по id, пытается расшифровать поля, помеченные как Encripted.
+			</summary>
+			<param name="id">
+				Id требуемого аккаунта.
+			</param>
+			<param name="password">
+				Пароль для расшифрования полей, если null - расшифровка производится не будет. По умолчанию null.
+			</param>
+			<returns>
+				Аккаунт.
+			</returns>
+		</Read>
+		<Update>
+			<summary>
+				Изменяет данные аккаунта в хранилище, шифрует поля, помеченные как Encripted.
+			</summary>
+			<param name="model">
+				Изменяемая модель.
+			</param>
+		</Update>
+		<Delete>
+			<summary>
+				Удаляет аккаунт по id.
+			</summary>
+			<param name="id">
+				Id аккаунта, который необходимо удалить.
+			</param>
+		</Delete>
+	</members>
+</docs>
