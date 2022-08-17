@@ -56,4 +56,33 @@
 			</param>
 		</Delete>
 	</members>
+	<members name="UserLogic">
+		<UserLogic>
+			<summary>
+				Класс, позволяющий взаимодействовать с данными пользователя, необходимыми для подключения к облаку.
+			</summary>
+		</UserLogic>
+		<Set>
+			<summary>
+				Устанавливает данные для подключения к облаку и сохраняет их в хранилище, шифрует поля, помеченные как Encripted.
+			</summary>
+			<param name="model">
+				Данные.
+			</param>
+			<param name="password">
+				Пароль для шифрования полей.
+			</param>
+		</Set>
+		<Get>
+			<summary>
+				Возвращает данные для подключения к облаку, пытается расшифровать поля, помеченные как Encripted.
+			</summary>
+			<param name="password">
+				Пароль для расшифрования полей, если null - расшифровка производится не будет. По умолчанию null.
+			</param>
+			<returns>
+				Данные для подключения к облаку.
+			</returns>
+		</Get>
+	</members>
 </docs>

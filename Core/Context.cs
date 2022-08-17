@@ -36,14 +36,14 @@ namespace TheSphinx.Core
                     CurrentId = IdHelper.currentId
                 };
 
-                foreach (Field field in storage.User.Fields.Values)
-                    if (field.Encrypted)
-                        field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
+                //foreach (Field field in storage.User.Fields.Values)
+                //    if (field.Encrypted)
+                //        field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
 
-                foreach (Account acc in storage.Accounts)
-                    foreach (Field field in acc.Fields.Values)
-                        if (field.Encrypted)
-                            field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
+                //foreach (Account acc in storage.Accounts)
+                //    foreach (Field field in acc.Fields.Values)
+                //        if (field.Encrypted)
+                //            field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
 
                 string json = JsonConvert.SerializeObject(storage);
                 string data = Crypto.Encrypt(json, StoragePassword);
@@ -73,14 +73,14 @@ namespace TheSphinx.Core
                         string json = Crypto.Decrypt(data, StoragePassword);
                         Storage restored = JsonConvert.DeserializeObject<Storage>(json);
 
-                        foreach (Field field in restored.User.Fields.Values)
-                            if (field.Encrypted)
-                                field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
+                        //foreach (Field field in restored.User.Fields.Values)
+                        //    if (field.Encrypted)
+                        //        field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
 
-                        foreach (Account acc in restored.Accounts)
-                            foreach (Field field in acc.Fields.Values)
-                                if (field.Encrypted)
-                                    field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
+                        //foreach (Account acc in restored.Accounts)
+                        //    foreach (Field field in acc.Fields.Values)
+                        //        if (field.Encrypted)
+                        //            field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
 
                         User = restored.User;
                         Accounts = restored.Accounts;
