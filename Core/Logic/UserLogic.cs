@@ -20,15 +20,15 @@ namespace TheSphinx.Core.Logic
                             Value =
                                 model.Fields[key].Encrypted
                                 ?
-                                Context.Crypto.Encrypt(model.Fields[key].Value, password)
+                                Context.Instance.Crypto.Encrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
                         });
             }
 
-            Context.User = user;
-            Context.Save();
+            Context.Instance.User = user;
+            Context.Instance.Save();
         }
 
         /// <include file='Docs.xml' path='docs/members[@name="UserLogic"]/Get/*'/>
@@ -36,7 +36,7 @@ namespace TheSphinx.Core.Logic
         {
             User user = new User();
 
-            foreach (string key in Context.User.Fields.Keys)
+            foreach (string key in Context.Instance.User.Fields.Keys)
             {
                 user.Fields
                     .Add(
@@ -44,12 +44,12 @@ namespace TheSphinx.Core.Logic
                         new Field
                         {
                             Value =
-                                Context.User.Fields[key].Encrypted && password != null
+                                Context.Instance.User.Fields[key].Encrypted && password != null
                                 ?
-                                Context.Crypto.Decrypt(Context.User.Fields[key].Value, password)
+                                Context.Instance.Crypto.Decrypt(Context.Instance.User.Fields[key].Value, password)
                                 :
-                                Context.User.Fields[key].Value,
-                            Encrypted = Context.User.Fields[key].Encrypted
+                                Context.Instance.User.Fields[key].Value,
+                            Encrypted = Context.Instance.User.Fields[key].Encrypted
                         });
             }
 

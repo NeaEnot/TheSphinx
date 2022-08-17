@@ -85,4 +85,19 @@
 			</returns>
 		</Get>
 	</members>
+	<members name="ContextInitializer">
+		<ContextInitializer>
+			<summary>
+				Класс, отвечающий за инициализацию контекста хранилища и проверку пароля хранилища.
+			</summary>
+		</ContextInitializer>
+		<Initialize>
+			<summary>
+				Инициализирует контекст и пытается загрузить данные из хранилища.
+			</summary>
+			<param name="storagePassword">
+				Пароль от хранилища.
+			</param>
+		</Initialize>
+	</members>
 </docs>

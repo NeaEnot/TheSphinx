@@ -9,23 +9,28 @@ using TheSphinx.Core.Models;
 
 namespace TheSphinx.Core
 {
-    /// <include file='Docs.xml' path='docs/members[@name="Context"]/Context/*'/>
-    public static class Context
+    internal class Context
     {
-        /// <include file='Docs.xml' path='docs/members[@name="Context"]/StoragePassword/*'/>
-        public static string StoragePassword { private get; set; }
-        /// <include file='Docs.xml' path='docs/members[@name="Context"]/FieldsPassword/*'/>
-        public static string FieldsPassword { private get; set; }
+        private static Context instanse;
+        internal static Context Instance
+        {
+            get
+            {
+                if (instanse == null)
+                    instanse = new Context();
 
-        /// <include file='Docs.xml' path='docs/members[@name="Context"]/User/*'/>
-        public static User User { get; set; }
-        /// <include file='Docs.xml' path='docs/members[@name="Context"]/Accounts/*'/>
-        public static List<Account> Accounts { get; set; }
+                return instanse;
+            }
+        }
 
-        internal static ICrypto Crypto { get; private set; } = new CesarSequence((char)500);
+        internal string StoragePassword { private get; set; }
 
-        /// <include file='Docs.xml' path='docs/members[@name="Context"]/Save/*'/>
-        public static void Save()
+        internal User User { get; set; }
+        internal List<Account> Accounts { get; set; }
+
+        internal ICrypto Crypto { get; private set; } = new CesarSequence((char)500);
+
+        internal void Save()
         {
             using (StreamWriter writer = new StreamWriter("storage.dat"))
             {
@@ -36,23 +41,13 @@ namespace TheSphinx.Core
                     CurrentId = IdHelper.currentId
                 };
 
-                //foreach (Field field in storage.User.Fields.Values)
-                //    if (field.Encrypted)
-                //        field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
-
-                //foreach (Account acc in storage.Accounts)
-                //    foreach (Field field in acc.Fields.Values)
-                //        if (field.Encrypted)
-                //            field.Value = Crypto.Encrypt(field.Value, FieldsPassword);
-
                 string json = JsonConvert.SerializeObject(storage);
                 string data = Crypto.Encrypt(json, StoragePassword);
                 writer.Write(data);
             }
         }
 
-        /// <include file='Docs.xml' path='docs/members[@name="Context"]/Load/*'/>
-        public static void Load()
+        internal void Load()
         {
             FileInfo file = new FileInfo("storage.dat");
             if (!file.Exists)
@@ -72,15 +67,6 @@ namespace TheSphinx.Core
                         string data = reader.ReadToEnd();
                         string json = Crypto.Decrypt(data, StoragePassword);
                         Storage restored = JsonConvert.DeserializeObject<Storage>(json);
-
-                        //foreach (Field field in restored.User.Fields.Values)
-                        //    if (field.Encrypted)
-                        //        field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
-
-                        //foreach (Account acc in restored.Accounts)
-                        //    foreach (Field field in acc.Fields.Values)
-                        //        if (field.Encrypted)
-                        //            field.Value = Crypto.Decrypt(field.Value, FieldsPassword);
 
                         User = restored.User;
                         Accounts = restored.Accounts;

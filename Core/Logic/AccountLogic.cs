@@ -30,22 +30,22 @@ namespace TheSphinx.Core.Logic
                             Value = 
                                 model.Fields[key].Encrypted
                                 ?
-                                Context.Crypto.Encrypt(model.Fields[key].Value, password)
+                                Context.Instance.Crypto.Encrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
                         });
             }
 
-            Context.Accounts.Add(account);
-            Context.Save();
+            Context.Instance.Accounts.Add(account);
+            Context.Instance.Save();
         }
 
         /// <include file='Docs.xml' path='docs/members[@name="AccountLogic"]/ReadAll/*'/>
         public List<Account> Read()
         {
             return
-                Context.Accounts
+                Context.Instance.Accounts
                 .Select(req => new Account
                 {
                     Id = req.Id,
@@ -57,7 +57,7 @@ namespace TheSphinx.Core.Logic
         /// <include file='Docs.xml' path='docs/members[@name="AccountLogic"]/Read/*'/>
         public Account Read(string id, string password = null)
         {
-            Account model = Context.Accounts.First(req => req.Id == id);
+            Account model = Context.Instance.Accounts.First(req => req.Id == id);
 
             Account account = new Account
             {
@@ -75,7 +75,7 @@ namespace TheSphinx.Core.Logic
                             Value =
                                 model.Fields[key].Encrypted && password != null
                                 ?
-                                Context.Crypto.Decrypt(model.Fields[key].Value, password)
+                                Context.Instance.Crypto.Decrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
@@ -88,7 +88,7 @@ namespace TheSphinx.Core.Logic
         /// <include file='Docs.xml' path='docs/members[@name="AccountLogic"]/Update/*'/>
         public void Update(Account model, string password)
         {
-            Account account = Context.Accounts.First(req => req.Id == model.Id);
+            Account account = Context.Instance.Accounts.First(req => req.Id == model.Id);
 
             account.Source = model.Source;
             account.Fields.Clear();
@@ -103,22 +103,22 @@ namespace TheSphinx.Core.Logic
                             Value =
                                 model.Fields[key].Encrypted
                                 ?
-                                Context.Crypto.Encrypt(model.Fields[key].Value, password)
+                                Context.Instance.Crypto.Encrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
                         });
             }
 
-            Context.Save();
+            Context.Instance.Save();
         }
 
         /// <include file='Docs.xml' path='docs/members[@name="AccountLogic"]/Delete/*'/>
         public void Delete(string id)
         {
-            Account account = Context.Accounts.First(req => req.Id == id);
-            Context.Accounts.Remove(account);
-            Context.Save();
+            Account account = Context.Instance.Accounts.First(req => req.Id == id);
+            Context.Instance.Accounts.Remove(account);
+            Context.Instance.Save();
         }
     }
 }
