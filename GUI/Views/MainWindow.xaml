@@ -16,10 +16,10 @@
         </DataGrid>
 
         <TextBox Name="tbSearch" Margin="10,10,50,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button Name="btnSearch" Content="Поиск" Margin="0,9,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="40" Click="btnSearch_Click"/>
+        <Button Name="btnSearch" Content="Search" Margin="0,9,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="40" Click="btnSearch_Click"/>
 
-        <Button Name="btnCreate" Content="Создать" HorizontalAlignment="Left" Margin="10,0,0,19" Height="27" Width="150" VerticalAlignment="Bottom" Click="btnCreate_Click"/>
-        <Button Name="btnEdit" Content="Посмотреть/Изменить" HorizontalAlignment="Left" Margin="165,0,0,19" Height="27" Width="150" VerticalAlignment="Bottom" Click="btnEdit_Click"/>
-        <Button Name="btnDelete" Content="Удалить" HorizontalAlignment="Left" Margin="320,0,0,19" Height="27" Width="150" VerticalAlignment="Bottom" Click="btnDelete_Click"/>
+        <Button Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="10,0,0,19" Height="27" Width="69" VerticalAlignment="Bottom" Click="btnCreate_Click"/>
+        <Button Name="btnEdit" Content="View/Edit" HorizontalAlignment="Left" Margin="84,0,0,19" Height="27" Width="69" VerticalAlignment="Bottom" Click="btnEdit_Click"/>
+        <Button Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="158,0,0,19" Height="27" Width="69" VerticalAlignment="Bottom" Click="btnDelete_Click"/>
     </Grid>
 </Window>

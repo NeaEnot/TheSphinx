@@ -1,0 +1,46 @@
+﻿<Window x:Class="GUI.Views.AccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.Views"
+        mc:Ignorable="d"
+        Title="Account" Height="405" Width="441">
+    <Grid>
+        <Label Content="Source:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox Margin="95,14,10,0" Text="{Binding Path=Source, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ListBox Margin="0,41,0,42" SelectionMode="Single" DataContext="{Binding Path=Fields, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" MinWidth="150"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0" Text="{Binding Path=Key, Mode=OneWayToSource}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+
+                        <TextBox Grid.Column="1" Text="{Binding Path=Value.Value, Mode=TwoWay}" Visibility="{Binding Path=Value.IsOpen}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                        <PasswordBox Grid.Column="1" Password="{Binding Path=Value.Value, Mode=TwoWay}" Visibility="{Binding Path=Value.IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+
+                        <CheckBox Grid.Column="2" IsChecked="{Binding Path=Value.Ecnripted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <CheckBox Grid.Column="3" IsChecked="{Binding Path=Value.IsOpen, Mode=TwoWay}" Visibility="{Binding Path=Value.Ecnripted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        
+                        <Button Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="40" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Focusable" Value="False" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <Button Name="btnAddField" Height="27" Width="69" Content="Add field" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
+        <Button Name="btnSave" Height="27" Width="69" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>
