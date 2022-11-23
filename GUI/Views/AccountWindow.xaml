@@ -22,13 +22,13 @@
 
                         <TextBox Grid.Column="0" Text="{Binding Path=Key, Mode=OneWayToSource}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
-                        <TextBox Grid.Column="1" Text="{Binding Path=Value.Value, Mode=TwoWay}" Visibility="{Binding Path=Value.IsOpen}" Margin="10,10,0,0" VerticalAlignment="Center"/>
-                        <PasswordBox Grid.Column="1" Password="{Binding Path=Value.Value, Mode=TwoWay}" Visibility="{Binding Path=Value.IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Text="{Binding Path=Value, Mode=TwoWay}" Visibility="{Binding Path=IsOpen}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                        <PasswordBox Grid.Column="1" Password="{Binding Path=Value, Mode=TwoWay}" Visibility="{Binding Path=IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
-                        <CheckBox Grid.Column="2" IsChecked="{Binding Path=Value.Ecnripted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <CheckBox Grid.Column="3" IsChecked="{Binding Path=Value.IsOpen, Mode=TwoWay}" Visibility="{Binding Path=Value.Ecnripted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <CheckBox Name="chbEncriped" Grid.Column="2" IsChecked="{Binding Path=Ecnripted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="chbEncriped_Checked" Unchecked="chbEncriped_Checked"/>
+                        <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsOpen, Mode=TwoWay}" Visibility="{Binding Path=Ecnripted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="chbShow_Checked" Unchecked="chbShow_Checked"/>
                         
-                        <Button Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="40" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Button Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="40" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -39,8 +39,8 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
 
-        <Button Name="btnAddField" Height="27" Width="69" Content="Add field" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
-        <Button Name="btnSave" Height="27" Width="69" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom"/>
+        <Button Name="btnAddField" Height="27" Width="69" Content="Add field" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="btnAddField_Click"/>
+        <Button Name="btnSave" Height="27" Width="69" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="btnSave_Click"/>
 
     </Grid>
 </Window>

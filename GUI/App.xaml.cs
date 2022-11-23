@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using TheSphinx.Core.Logic;
 
 namespace GUI
@@ -6,5 +7,6 @@ namespace GUI
     public partial class App : Application
     {
         internal static AccountLogic AccountLogic { get; private set; } = new AccountLogic();
+        internal static PasswordController PasswordController { get; private set; } = new PasswordController(new TimeSpan(0, 5, 0));
     }
 }

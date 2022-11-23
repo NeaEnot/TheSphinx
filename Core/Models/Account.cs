@@ -15,9 +15,6 @@ namespace TheSphinx.Core.Models
 
         public Account()
         {
-            Id = IdHelper.currentId;
-            IdHelper.ToNextId();
-
             Fields = new Dictionary<string, Field>();
         }
 

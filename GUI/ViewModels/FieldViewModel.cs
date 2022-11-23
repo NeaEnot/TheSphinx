@@ -39,6 +39,9 @@ namespace GUI.ViewModels
             }
         }
 
+        public bool IsOpen => !Encrypted;
+        public bool IsClosed => Encrypted;
+
         internal FieldViewModel(Field field, string key)
         {
             Field = field;
