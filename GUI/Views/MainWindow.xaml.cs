@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using TheSphinx.Core.Models;
 
@@ -32,22 +33,34 @@ namespace GUI.Views
 
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            Account account = (sender as DataGridRow).Item as Account;
+            AccountWindow window = new AccountWindow(account);
+            window.ShowDialog();
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            AccountWindow window = new AccountWindow(new Account());
+            window.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGrid.SelectedItem != null)
+            {
+                Account account = dataGrid.SelectedItem as Account;
+                AccountWindow window = new AccountWindow(account);
+                window.ShowDialog();
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dataGrid.SelectedItem != null)
+            {
+                Account account = dataGrid.SelectedItem as Account;
+                App.AccountLogic.Delete(account.Id);
+            }
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)

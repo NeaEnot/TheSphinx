@@ -21,16 +21,6 @@ namespace GUI.Views
             model.Fields.Add(new FieldViewModel(new Field(), ""));
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            Account account = model.Convert();
-
-            if (!string.IsNullOrEmpty(account.Id))
-                App.AccountLogic.Create(account, App.PasswordController.GetPassword());
-            else
-                App.AccountLogic.Update(account, App.PasswordController.GetPassword());
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
 
@@ -44,6 +34,18 @@ namespace GUI.Views
         private void chbShow_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Account account = model.Convert();
+
+            if (!string.IsNullOrEmpty(account.Id))
+                App.AccountLogic.Create(account, App.PasswordController.GetPassword());
+            else
+                App.AccountLogic.Update(account, App.PasswordController.GetPassword());
+
+            DialogResult = true;
         }
     }
 }
