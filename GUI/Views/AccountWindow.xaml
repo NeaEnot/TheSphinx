@@ -25,8 +25,8 @@
                         <TextBox Grid.Column="1" Text="{Binding Path=Value, Mode=TwoWay}" Visibility="{Binding Path=IsOpen}" Margin="10,10,0,0" VerticalAlignment="Center"/>
                         <PasswordBox Grid.Column="1" Password="{Binding Path=Value, Mode=TwoWay}" Visibility="{Binding Path=IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
-                        <CheckBox Name="chbEncriped" Grid.Column="2" IsChecked="{Binding Path=Ecnripted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="chbEncriped_Checked" Unchecked="chbEncriped_Checked"/>
-                        <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsOpen, Mode=TwoWay}" Visibility="{Binding Path=Ecnripted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="chbShow_Checked" Unchecked="chbShow_Checked"/>
+                        <CheckBox Name="chbEncriped" Grid.Column="2" IsChecked="{Binding Path=Ecnripted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsOpen, Mode=TwoWay}" Visibility="{Binding Path=Ecnripted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         
                         <Button Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="40" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
                     </Grid>

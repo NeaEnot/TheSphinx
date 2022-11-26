@@ -1,5 +1,7 @@
 ﻿using GUI.ViewModels;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using TheSphinx.Core.Models;
 
 namespace GUI.Views
@@ -23,17 +25,9 @@ namespace GUI.Views
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void chbEncriped_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void chbShow_Checked(object sender, RoutedEventArgs e)
-        {
-
+            string key = (sender as Button).Tag as string;
+            FieldViewModel field = model.Fields.First(req => req.Key == key);
+            model.Fields.Remove(field);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
