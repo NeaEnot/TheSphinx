@@ -2,7 +2,7 @@
 using System.Windows;
 using TheSphinx.Core.Logic;
 
-namespace GUI
+namespace TheSphinx.GUI
 {
     public partial class App : Application
     {

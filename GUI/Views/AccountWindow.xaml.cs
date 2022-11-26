@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TheSphinx.Core.Models;
 
-namespace GUI.Views
+namespace TheSphinx.GUI.Views
 {
     public partial class AccountWindow : Window
     {
@@ -35,9 +35,9 @@ namespace GUI.Views
             Account account = model.Convert();
 
             if (!string.IsNullOrEmpty(account.Id))
-                App.AccountLogic.Create(account, App.PasswordController.GetPassword());
+                App.AccountLogic.Create(account, App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
             else
-                App.AccountLogic.Update(account, App.PasswordController.GetPassword());
+                App.AccountLogic.Update(account, App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
 
             DialogResult = true;
         }

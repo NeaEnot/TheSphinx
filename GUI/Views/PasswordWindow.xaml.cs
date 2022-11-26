@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace GUI.Views
+namespace TheSphinx.GUI.Views
 {
     public partial class PasswordWindow : Window
     {

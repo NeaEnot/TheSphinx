@@ -1,7 +1,8 @@
-﻿using GUI.Views;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using TheSphinx.GUI.Views;
 
-namespace GUI
+namespace TheSphinx.GUI
 {
     internal class PasswordController
     {
@@ -14,24 +15,42 @@ namespace GUI
             this.duration = duration;
         }
 
-        internal string GetPassword()
+        internal string GetPassword(PasswordType type)
         {
-            if (DateTime.Now - lastPasswordEnter > duration)
+            if (type == PasswordType.general)
             {
                 PasswordWindow window = new PasswordWindow();
 
                 if (window.ShowDialog() == true)
-                {
-                    password = window.Result;
-                    lastPasswordEnter = DateTime.Now;
-                }
+                    return window.Result;
                 else
-                {
-                    password = "";
-                }
+                    return "";
             }
+            else
+            {
+                if (DateTime.Now - lastPasswordEnter > duration)
+                {
+                    PasswordWindow window = new PasswordWindow();
 
-            return password;
+                    if (window.ShowDialog() == true)
+                    {
+                        password = window.Result;
+                        lastPasswordEnter = DateTime.Now;
+                    }
+                    else
+                    {
+                        password = "";
+                    }
+                }
+
+                return password;
+            }
+        }
+
+        internal enum PasswordType
+        {
+            general,
+            fields
         }
     }
 }

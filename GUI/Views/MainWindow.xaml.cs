@@ -4,14 +4,29 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TheSphinx.Core.Logic;
 using TheSphinx.Core.Models;
 
-namespace GUI.Views
+namespace TheSphinx.GUI.Views
 {
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
+            while (true)
+            {
+                try
+                {
+                    string password = App.PasswordController.GetPassword(PasswordController.PasswordType.general);
+                    ContextInitializer.Initialize(password);
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Incorrect password!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
             InitializeComponent();
             LoadData();
         }
@@ -79,14 +94,20 @@ namespace GUI.Views
             foreach (Account account in accounts)
             {
                 if (account.Source.Contains(searchString))
+                {
                     result.Add(account);
+                }
                 else
+                {
                     foreach (KeyValuePair<string, Field> field in account.Fields.Where(req => !req.Value.Encrypted))
+                    {
                         if (field.Key.Contains(searchString) || field.Value.Value.Contains(searchString))
                         {
                             result.Add(account);
                             break;
                         }
+                    }
+                }
             }
 
             dataGrid.ItemsSource = result;
