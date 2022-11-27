@@ -49,6 +49,8 @@ namespace TheSphinx.GUI.Views
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Account account = (sender as DataGridRow).Item as Account;
+            account = App.AccountLogic.Read(account.Id, App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
+
             AccountWindow window = new AccountWindow(account);
             window.ShowDialog();
         }
@@ -64,6 +66,8 @@ namespace TheSphinx.GUI.Views
             if (dataGrid.SelectedItem != null)
             {
                 Account account = dataGrid.SelectedItem as Account;
+                account = App.AccountLogic.Read(account.Id, App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
+
                 AccountWindow window = new AccountWindow(account);
                 window.ShowDialog();
             }
