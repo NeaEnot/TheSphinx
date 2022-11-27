@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <RootNamespace>TheSphinx.GUI</RootNamespace>
+    <AssemblyName>TheSphinx</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

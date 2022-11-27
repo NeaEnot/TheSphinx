@@ -21,6 +21,10 @@ namespace TheSphinx.GUI.Views
                     ContextInitializer.Initialize(password);
                     break;
                 }
+                catch (OperationCanceledException ex)
+                {
+                    Close();
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Incorrect password!", MessageBoxButton.OK, MessageBoxImage.Error);

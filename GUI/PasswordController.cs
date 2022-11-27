@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using TheSphinx.GUI.Views;
 
 namespace TheSphinx.GUI
@@ -24,7 +23,7 @@ namespace TheSphinx.GUI
                 if (window.ShowDialog() == true)
                     return window.Result;
                 else
-                    return "";
+                    throw new OperationCanceledException();
             }
             else
             {
