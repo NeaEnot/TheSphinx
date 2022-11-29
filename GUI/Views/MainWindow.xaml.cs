@@ -23,7 +23,7 @@ namespace TheSphinx.GUI.Views
                 }
                 catch (OperationCanceledException ex)
                 {
-                    Close();
+                    Environment.Exit(0);
                 }
                 catch (Exception ex)
                 {
