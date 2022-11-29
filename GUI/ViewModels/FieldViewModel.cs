@@ -36,11 +36,12 @@ namespace GUI.ViewModels
             {
                 Field.Encrypted = value;
                 OnPropertyChanged("Encrypted");
+                OnPropertyChanged("IsClosed");
             }
         }
 
         public bool IsOpen { get; set; }
-        public bool IsClosed => !IsOpen;
+        public bool IsClosed => Encrypted && !IsOpen;
 
         internal FieldViewModel(Field field, string key)
         {

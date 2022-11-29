@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using TheSphinx.Core.Models;
 
@@ -28,6 +29,19 @@ namespace GUI.ViewModels
 
             foreach (KeyValuePair<string, Field> field in account.Fields)
                 Fields.Add(new FieldViewModel(field.Value, field.Key));
+        }
+
+        internal void AddField()
+        {
+            Fields.Add(new FieldViewModel(new Field(), ""));
+            OnPropertyChanged("Fields");
+        }
+
+        internal void RemoveField(string key)
+        {
+            FieldViewModel field = Fields.First(req => req.Key == key);
+            Fields.Remove(field);
+            OnPropertyChanged("Fields");
         }
 
         internal Account Convert()
