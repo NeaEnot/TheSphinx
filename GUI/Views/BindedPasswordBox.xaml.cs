@@ -8,7 +8,11 @@ namespace TheSphinx.GUI.Views
         public string Password
         {
             get => pb.Password;
-            set { pb.Password = value; SetValue(PasswordProperty, value); }
+            set
+            {
+                pb.Password = value;
+                SetValue(PasswordProperty, value);
+            }
         }
 
         public static readonly DependencyProperty PasswordProperty;

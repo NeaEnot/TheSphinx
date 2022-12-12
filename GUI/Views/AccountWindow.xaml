@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheSphinx.GUI.Views"
         mc:Ignorable="d"
-        Title="Account" Height="405" Width="441">
+        Title="Account" Height="405" Width="600">
     <Grid>
         <Label Content="Source:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox Margin="95,14,10,0" Text="{Binding Path=Source, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top"/>
@@ -15,21 +15,21 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" MinWidth="150"/>
-                            <ColumnDefinition Width="2*" MinWidth="150"/>
+                            <ColumnDefinition Width="2*" MinWidth="250"/>
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="55"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBox Grid.Column="0" Text="{Binding Path=Key, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
-                        <TextBox Grid.Column="1" Text="{Binding Path=Value, Mode=TwoWay}" Visibility="{Binding Path=IsOpen}" Margin="10,10,0,0" VerticalAlignment="Center"/>
-                        <local:BindedPasswordBox Grid.Column="1" Password="{Binding Path=Value, Mode=TwoWay}" Visibility="{Binding Path=IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" Text="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=IsOpen}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                        <local:BindedPasswordBox Grid.Column="1" Password="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
                         <CheckBox Name="chbEncrypted" Grid.Column="2" IsChecked="{Binding Path=Encrypted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsShowed, Mode=TwoWay}" Visibility="{Binding Path=IsEncrypted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                        <Button Grid.Column="4" Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="40" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
+                        <Button Grid.Column="4" Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="45" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
