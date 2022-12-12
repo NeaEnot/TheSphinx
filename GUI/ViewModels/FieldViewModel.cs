@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using TheSphinx.Core.Models;
 
 namespace GUI.ViewModels
@@ -29,19 +30,35 @@ namespace GUI.ViewModels
             }
         }
 
-        public bool? Encrypted
+        public bool Encrypted
         {
             get => Field.Encrypted;
             set
             {
-                Field.Encrypted = value.Value;
+                Field.Encrypted = value;
                 OnPropertyChanged("Encrypted");
+                OnPropertyChanged("IsEncrypted");
+                OnPropertyChanged("IsOpen");
                 OnPropertyChanged("IsClosed");
             }
         }
 
-        public bool IsOpen { get; set; }
-        public bool IsClosed => Encrypted.Value && !IsOpen;
+        private bool isShowed;
+        public bool IsShowed
+        {
+            get => isShowed;
+            set
+            {
+                isShowed = value;
+                OnPropertyChanged("IsShowed");
+                OnPropertyChanged("IsOpen");
+                OnPropertyChanged("IsClosed");
+            }
+        }
+
+        public Visibility IsEncrypted => Encrypted ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsOpen => !Encrypted || IsShowed ? Visibility.Visible : Visibility.Hidden;
+        public Visibility IsClosed => Encrypted && !IsShowed ? Visibility.Visible : Visibility.Hidden;
 
         internal FieldViewModel(Field field, string key)
         {

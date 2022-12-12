@@ -27,7 +27,7 @@
                         <local:BindedPasswordBox Grid.Column="1" Password="{Binding Path=Value, Mode=TwoWay}" Visibility="{Binding Path=IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
                         <CheckBox Name="chbEncrypted" Grid.Column="2" IsChecked="{Binding Path=Encrypted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsOpen, Mode=TwoWay}" Visibility="{Binding Path=Ecnripted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsShowed, Mode=TwoWay}" Visibility="{Binding Path=IsEncrypted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                         <Button Grid.Column="4" Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="40" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
                     </Grid>

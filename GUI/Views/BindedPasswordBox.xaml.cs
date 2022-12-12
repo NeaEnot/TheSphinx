@@ -13,6 +13,11 @@ namespace TheSphinx.GUI.Views
 
         public static readonly DependencyProperty PasswordProperty;
 
+        public BindedPasswordBox()
+        {
+            InitializeComponent();
+        }
+
         static BindedPasswordBox()
         {
             PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(BindedPasswordBox));
