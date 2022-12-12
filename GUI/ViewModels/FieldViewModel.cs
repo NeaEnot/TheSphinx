@@ -29,19 +29,19 @@ namespace GUI.ViewModels
             }
         }
 
-        public bool Encrypted
+        public bool? Encrypted
         {
             get => Field.Encrypted;
             set
             {
-                Field.Encrypted = value;
+                Field.Encrypted = value.Value;
                 OnPropertyChanged("Encrypted");
                 OnPropertyChanged("IsClosed");
             }
         }
 
         public bool IsOpen { get; set; }
-        public bool IsClosed => Encrypted && !IsOpen;
+        public bool IsClosed => Encrypted.Value && !IsOpen;
 
         internal FieldViewModel(Field field, string key)
         {
