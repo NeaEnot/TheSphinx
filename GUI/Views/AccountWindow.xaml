@@ -24,7 +24,7 @@
                         <TextBox Grid.Column="0" Text="{Binding Path=Key, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
                         <TextBox Grid.Column="1" Text="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=IsOpen}" Margin="10,10,0,0" VerticalAlignment="Center"/>
-                        <local:BindedPasswordBox Grid.Column="1" Password="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
+                        <local:BindablePasswordBox Grid.Column="1" Password="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=IsClosed}" Margin="10,10,0,0" VerticalAlignment="Center"/>
 
                         <CheckBox Name="chbEncrypted" Grid.Column="2" IsChecked="{Binding Path=Encrypted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsShowed, Mode=TwoWay}" Visibility="{Binding Path=IsEncrypted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
