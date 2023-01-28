@@ -14,6 +14,10 @@ namespace TheSphinx.GUI.ViewModels
             Fields = new List<FieldViewModel>();
 
             foreach (KeyValuePair<string, Field> field in user.Fields)
+                if (requiredFields.Count(req => req == field.Key) == 0)
+                    user.Fields.Clear();
+
+            foreach (KeyValuePair<string, Field> field in user.Fields)
                 (Fields as List<FieldViewModel>).Add(new FieldViewModel(field.Value, field.Key));
 
             foreach (string requiredField in requiredFields)
