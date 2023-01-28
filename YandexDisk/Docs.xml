@@ -11,5 +11,13 @@
 				</para>
 			</summary>
 		</NetworkLogic>
+		<Constructor>
+			<summary>
+				Конструктор, создающий объект сетевой логики.
+			</summary>
+			<param name="getPassword">
+				Делегат, возвращающий пароль от полей.
+			</param>
+		</Constructor>
 	</members>
 </docs>
