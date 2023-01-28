@@ -7,7 +7,7 @@ namespace GUI.ViewModels
 {
     internal class FieldViewModel : INotifyPropertyChanged
     {
-        public Field Field { get; private set; }
+        private Field field;
 
         private string key;
         public string Key
@@ -22,20 +22,20 @@ namespace GUI.ViewModels
 
         public string Value
         {
-            get => Field.Value;
+            get => field.Value;
             set
             {
-                Field.Value = value;
+                field.Value = value;
                 OnPropertyChanged("Value");
             }
         }
 
         public bool Encrypted
         {
-            get => Field.Encrypted;
+            get => field.Encrypted;
             set
             {
-                Field.Encrypted = value;
+                field.Encrypted = value;
                 OnPropertyChanged("Encrypted");
                 OnPropertyChanged("IsEncrypted");
                 OnPropertyChanged("IsOpen");
@@ -62,8 +62,19 @@ namespace GUI.ViewModels
 
         internal FieldViewModel(Field field, string key)
         {
-            Field = field;
+            this.field = field;
             this.key = key;
+        }
+
+        internal Field Convert()
+        {
+            Field field = new Field
+            {
+                Value = this.field.Value,
+                Encrypted = this.field.Encrypted
+            };
+
+            return field;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

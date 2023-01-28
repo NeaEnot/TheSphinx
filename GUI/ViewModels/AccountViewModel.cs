@@ -53,7 +53,7 @@ namespace GUI.ViewModels
             };
 
             foreach (FieldViewModel field in Fields)
-                account.Fields.Add(field.Key, field.Field);
+                account.Fields.Add(field.Key, field.Convert());
 
             return account;
         }

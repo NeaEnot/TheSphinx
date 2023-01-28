@@ -27,7 +27,7 @@ namespace TheSphinx.GUI.ViewModels
             User user = new User();
 
             foreach (FieldViewModel field in Fields)
-                user.Fields.Add(field.Key, field.Field);
+                user.Fields.Add(field.Key, field.Convert());
 
             return user;
         }
