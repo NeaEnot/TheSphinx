@@ -63,13 +63,15 @@ namespace TheSphinx.GUI.Views
             account = App.AccountLogic.Read(account.Id, App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
 
             AccountWindow window = new AccountWindow(account);
-            window.ShowDialog();
+            if (window.ShowDialog() == true)
+                LoadData();
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             AccountWindow window = new AccountWindow(new Account());
-            window.ShowDialog();
+            if (window.ShowDialog() == true)
+                LoadData();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -80,7 +82,8 @@ namespace TheSphinx.GUI.Views
                 account = App.AccountLogic.Read(account.Id, App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
 
                 AccountWindow window = new AccountWindow(account);
-                window.ShowDialog();
+                if (window.ShowDialog() == true)
+                    LoadData();
             }
         }
 
@@ -90,6 +93,7 @@ namespace TheSphinx.GUI.Views
             {
                 Account account = dataGrid.SelectedItem as Account;
                 App.AccountLogic.Delete(account.Id);
+                LoadData();
             }
         }
 
