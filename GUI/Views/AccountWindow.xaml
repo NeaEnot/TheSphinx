@@ -19,6 +19,7 @@
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBox Grid.Column="0" Text="{Binding Path=Key, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center"/>
@@ -29,7 +30,8 @@
                         <CheckBox Name="chbEncrypted" Grid.Column="2" IsChecked="{Binding Path=Encrypted, Mode=TwoWay}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <CheckBox Name="chbShow" Grid.Column="3" IsChecked="{Binding Path=IsShowed, Mode=TwoWay}" Visibility="{Binding Path=IsEncrypted}" Margin="10,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                        <Button Grid.Column="4" Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="45" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
+                        <Button Grid.Column="4" Name="btnCopy" Tag="{Binding Path=Key, Mode=OneWay}" Width="45" Content="Copy" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnCopy_Click"/>
+                        <Button Grid.Column="5" Name="btnDelete" Tag="{Binding Path=Key, Mode=OneWay}" Width="45" Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

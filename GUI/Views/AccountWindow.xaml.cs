@@ -1,4 +1,5 @@
 ﻿using GUI.ViewModels;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using TheSphinx.Core.Models;
@@ -40,6 +41,14 @@ namespace TheSphinx.GUI.Views
                 App.AccountLogic.Update(account, App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
 
             DialogResult = true;
+        }
+
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            string key = (sender as Button).Tag as string;
+            FieldViewModel field = model.Fields.First(req => req.Key == key);
+
+            Clipboard.SetText(field.Value);
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheSphinx.GUI.Views"
         mc:Ignorable="d"
-        Title="UserWindow" Height="450" Width="800">
+        Title="UserWindow" Height="300" Width="700">
     <Grid>
         <ListBox Name="lbFields" Margin="0,0,0,42" SelectionMode="Single" ItemsSource="{Binding Path=Fields}">
             <ListBox.ItemTemplate>
@@ -16,7 +16,6 @@
                             <ColumnDefinition Width="2*" MinWidth="250"/>
                             <ColumnDefinition Width="30"/>
                             <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="55"/>
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Content="{Binding Path=Key}" Margin="10,10,0,0" VerticalAlignment="Center"/>
