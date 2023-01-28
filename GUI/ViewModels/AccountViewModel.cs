@@ -20,7 +20,7 @@ namespace GUI.ViewModels
             }
         }
 
-        public List<FieldViewModel> Fields { get; set; }
+        public IEnumerable<FieldViewModel> Fields { get; set; }
 
         internal AccountViewModel(Account account)
         {
@@ -28,19 +28,19 @@ namespace GUI.ViewModels
             Fields = new List<FieldViewModel>();
 
             foreach (KeyValuePair<string, Field> field in account.Fields)
-                Fields.Add(new FieldViewModel(field.Value, field.Key));
+                (Fields as List<FieldViewModel>).Add(new FieldViewModel(field.Value, field.Key));
         }
 
         internal void AddField()
         {
-            Fields.Add(new FieldViewModel(new Field(), ""));
+            (Fields as List<FieldViewModel>).Add(new FieldViewModel(new Field(), ""));
             OnPropertyChanged("Fields");
         }
 
         internal void RemoveField(string key)
         {
             FieldViewModel field = Fields.First(req => req.Key == key);
-            Fields.Remove(field);
+            (Fields as List<FieldViewModel>).Remove(field);
             OnPropertyChanged("Fields");
         }
 
