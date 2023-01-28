@@ -35,6 +35,13 @@ namespace TheSphinx.GUI.Views
             LoadData();
         }
 
+        private void RestartWindow()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
+
         private void LoadData()
         {
             List<Account> accounts = App.AccountLogic.Read().ToList();
@@ -119,6 +126,42 @@ namespace TheSphinx.GUI.Views
             }
 
             dataGrid.ItemsSource = result;
+        }
+
+        private void MenuItemUser_Click(object sender, RoutedEventArgs e)
+        {
+            User user = App.UserLogic.Get(App.PasswordController.GetPassword(PasswordController.PasswordType.fields));
+
+            UserWindow window = new UserWindow(user);
+            window.ShowDialog();
+        }
+
+        private void MenuItemDownoad_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                App.NetworkLogic.Connect(() => "");
+                App.NetworkLogic.Download("storage.dat");
+
+                RestartWindow();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void MenuItemUpload_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                App.NetworkLogic.Connect(() => "");
+                App.NetworkLogic.Upload("storage.dat");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

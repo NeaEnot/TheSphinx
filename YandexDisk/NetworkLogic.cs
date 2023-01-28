@@ -29,10 +29,11 @@ namespace YandexDisk
 
         public void Connect(Func<string> getCode)
         {
-            User user = userLogic.Get(getPassword());
-
             if (diskApi == null)
+            {
+                User user = userLogic.Get(getPassword());
                 diskApi = new DiskHttpApi(user.Fields["token"].Value);
+            }
         }
 
         public void Download(string path)
