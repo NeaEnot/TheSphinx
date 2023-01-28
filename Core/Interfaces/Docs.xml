@@ -6,6 +6,11 @@
 				Интерфейс работы с облаком.
 			</summary>
 		</INetworkLogic>
+		<RequiredFields>
+			<summary>
+				Массив наименований требуемых полей.
+			</summary>
+		</RequiredFields>
 		<Connect>
 			<summary>
 				Подключение к облаку.

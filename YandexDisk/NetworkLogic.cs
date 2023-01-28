@@ -25,6 +25,8 @@ namespace YandexDisk
             this.getPassword = getPassword;
         }
 
+        public string[] RequiredFields => new string[] { "path", "token" };
+
         public void Connect(Func<string> getCode)
         {
             User user = userLogic.Get(getPassword());
