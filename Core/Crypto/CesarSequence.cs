@@ -1,4 +1,6 @@
-﻿namespace TheSphinx.Core.Crypto
+﻿using System.Text;
+
+namespace TheSphinx.Core.Crypto
 {
     internal class CesarSequence : ICrypto
     {
@@ -9,10 +11,11 @@
             this.foundation = foundation;
         }
 
-        public string Encrypt(string text, string password)
+        public byte[] Encrypt(byte[] bytes, string password)
         {
             string answer = "";
 
+            string text = Encoding.Unicode.GetString(bytes);
             int k = 0;
 
             for (int i = 0; i < text.Length; i++)
@@ -34,13 +37,14 @@
                     k = 0;
             }
 
-            return answer;
+            return Encoding.Unicode.GetBytes(answer);
         }
 
-        public string Decrypt(string text, string password)
+        public byte[] Decrypt(byte[] bytes, string password)
         {
             string answer = "";
 
+            string text = Encoding.Unicode.GetString(bytes);
             int k = 0;
 
             for (int i = 0; i < text.Length; i++)
@@ -62,7 +66,7 @@
                     k = 0;
             }
 
-            return answer;
+            return Encoding.Unicode.GetBytes(answer);
         }
     }
 }

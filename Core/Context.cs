@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using TheSphinx.Core.Crypto;
 using TheSphinx.Core.Helpers;
 using TheSphinx.Core.Models;
@@ -28,23 +29,22 @@ namespace TheSphinx.Core
         internal User User { get; set; }
         internal List<Account> Accounts { get; set; }
 
-        internal ICrypto Crypto { get; private set; } = new CesarSequence((char)500);
+        internal ICrypto Crypto { get; private set; } = new AesCrypto();
 
         internal void Save()
         {
-            using (StreamWriter writer = new StreamWriter("storage.dat"))
+            Storage storage = new Storage
             {
-                Storage storage = new Storage
-                {
-                    User = User,
-                    Accounts = Accounts.Select(acc => acc.Clone()).ToList(),
-                    CurrentId = IdHelper.currentId
-                };
+                User = User,
+                Accounts = Accounts.Select(acc => acc.Clone()).ToList(),
+                CurrentId = IdHelper.currentId
+            };
 
-                string json = JsonConvert.SerializeObject(storage);
-                string data = Crypto.Encrypt(json, StoragePassword);
-                writer.Write(data);
-            }
+            string json = JsonConvert.SerializeObject(storage);
+            byte[] data = Encoding.Default.GetBytes(json);
+            byte[] encoded = Crypto.Encrypt(data, StoragePassword);
+
+            File.WriteAllBytes("storage.dat", encoded);
         }
 
         internal void Load()
@@ -62,16 +62,16 @@ namespace TheSphinx.Core
             {
                 try
                 {
-                    using (StreamReader reader = new StreamReader("storage.dat"))
-                    {
-                        string data = reader.ReadToEnd();
-                        string json = Crypto.Decrypt(data, StoragePassword);
-                        Storage restored = JsonConvert.DeserializeObject<Storage>(json);
 
-                        User = restored.User;
-                        Accounts = restored.Accounts;
-                        IdHelper.currentId = restored.CurrentId;
-                    }
+                    byte[] encoded = File.ReadAllBytes("storage.dat");
+                    byte[] data = Crypto.Decrypt(encoded, StoragePassword);
+                    string json = Encoding.Default.GetString(data);
+
+                    Storage restored = JsonConvert.DeserializeObject<Storage>(json);
+
+                    User = restored.User;
+                    Accounts = restored.Accounts;
+                    IdHelper.currentId = restored.CurrentId;
                 }
                 catch (Exception ex)
                 {
