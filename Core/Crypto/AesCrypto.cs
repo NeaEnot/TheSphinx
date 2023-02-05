@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using TheSphinx.Core.Helpers;
 
 namespace TheSphinx.Core.Crypto
 {
@@ -32,16 +33,17 @@ namespace TheSphinx.Core.Crypto
             }
         }
 
-        public byte[] Encrypt(byte[] bytes, string password)
+        public string Encrypt(string text, string password)
         {
             Aes aes = Aes.Create();
-            aes.Padding = PaddingMode.PKCS7;
 
             aes.GenerateIV();
 
             aes.Key = TransformPasswordToKey(password);
             byte[] encrypted;
             ICryptoTransform crypt = aes.CreateEncryptor(aes.Key, aes.IV);
+
+            byte[] bytes = StringConverter.GetBytes(text);
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -53,26 +55,29 @@ namespace TheSphinx.Core.Crypto
                 encrypted = ms.ToArray();
             }
 
-            return encrypted.Concat(aes.IV).ToArray();
+            string answer = StringConverter.TransformEncode(encrypted.Concat(aes.IV).ToArray());
+
+            return answer;
         }
 
-        public byte[] Decrypt(byte[] bytes, string password)
+        public string Decrypt(string text, string password)
         {
+            string base64encoded = StringConverter.TransformDecode(text);
+            byte[] bytes = StringConverter.GetBytes(base64encoded);
+
             byte[] bytesIv = new byte[16];
-            byte[] mess = new byte[bytes.Length - 16];
+            byte[] data = new byte[bytes.Length - 16];
 
             for (int i = bytes.Length - 16, j = 0; i < bytes.Length; i++, j++)
                 bytesIv[j] = bytes[i];
 
             for (int i = 0; i < bytes.Length - 16; i++)
-                mess[i] = bytes[i];
+                data[i] = bytes[i];
 
             Aes aes = Aes.Create();
-            aes.Padding = PaddingMode.PKCS7;
             aes.Key = TransformPasswordToKey(password);
             aes.IV = bytesIv;
 
-            byte[] data = mess;
             ICryptoTransform crypt = aes.CreateDecryptor(aes.Key, aes.IV);
 
             using (MemoryStream ms = new MemoryStream(data))
@@ -85,7 +90,7 @@ namespace TheSphinx.Core.Crypto
                     while ((b = cs.ReadByte()) != -1)
                         decrypted.Add((byte)b);
 
-                    return decrypted.ToArray();
+                    return StringConverter.GetString(decrypted.ToArray());
                 }
             }
         }

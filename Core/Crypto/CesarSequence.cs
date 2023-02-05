@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using TheSphinx.Core.Helpers;
 
 namespace TheSphinx.Core.Crypto
 {
@@ -11,11 +12,9 @@ namespace TheSphinx.Core.Crypto
             this.foundation = foundation;
         }
 
-        public byte[] Encrypt(byte[] bytes, string password)
+        public string Encrypt(string text, string password)
         {
             string answer = "";
-
-            string text = Encoding.Unicode.GetString(bytes);
             int k = 0;
 
             for (int i = 0; i < text.Length; i++)
@@ -37,17 +36,17 @@ namespace TheSphinx.Core.Crypto
                     k = 0;
             }
 
-            return Encoding.Unicode.GetBytes(answer);
+            return StringConverter.TransformEncode(answer);
         }
 
-        public byte[] Decrypt(byte[] bytes, string password)
+        public string Decrypt(string text, string password)
         {
             string answer = "";
 
-            string text = Encoding.Unicode.GetString(bytes);
+            string str = StringConverter.TransformDecode(text);
             int k = 0;
 
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < str.Length; i++)
             {
                 char t = text[i];
                 char p = password[k];
@@ -66,7 +65,7 @@ namespace TheSphinx.Core.Crypto
                     k = 0;
             }
 
-            return Encoding.Unicode.GetBytes(answer);
+            return answer;
         }
     }
 }

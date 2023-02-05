@@ -31,7 +31,7 @@ namespace TheSphinx.Core.Logic
                             Value = 
                                 model.Fields[key].Encrypted
                                 ?
-                                Encrypt(model.Fields[key].Value, password)
+                                Context.Instance.Crypto.Encrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
@@ -76,7 +76,7 @@ namespace TheSphinx.Core.Logic
                             Value =
                                 model.Fields[key].Encrypted && password != null
                                 ?
-                                Decrypt(model.Fields[key].Value, password)
+                                Context.Instance.Crypto.Decrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
@@ -104,7 +104,7 @@ namespace TheSphinx.Core.Logic
                             Value =
                                 model.Fields[key].Encrypted
                                 ?
-                                Encrypt(model.Fields[key].Value, password)
+                                Context.Instance.Crypto.Encrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
@@ -120,20 +120,6 @@ namespace TheSphinx.Core.Logic
             Account account = Context.Instance.Accounts.First(req => req.Id == id);
             Context.Instance.Accounts.Remove(account);
             Context.Instance.Save();
-        }
-
-        private static string Encrypt(string value, string password)
-        {
-            byte[] data = Encoding.Default.GetBytes(value);
-            byte[] encoded = Context.Instance.Crypto.Encrypt(data, password);
-            return Encoding.Default.GetString(encoded);
-        }
-
-        private static string Decrypt(string value, string password)
-        {
-            byte[] data = Encoding.Default.GetBytes(value);
-            byte[] decoded = Context.Instance.Crypto.Decrypt(data, password);
-            return Encoding.Default.GetString(decoded);
         }
     }
 }

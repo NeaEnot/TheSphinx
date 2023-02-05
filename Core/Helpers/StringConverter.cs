@@ -5,28 +5,42 @@ namespace TheSphinx.Core.Helpers
 {
     internal static class StringConverter
     {
-        private static string Base64Encode(string str)
+        private static Encoding encoding = Encoding.Unicode;
+
+        internal static string TransformEncode(string str)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(str);
-            return Convert.ToBase64String(bytes);
+            byte[] bytes = encoding.GetBytes(str);
+            return TransformEncode(bytes);
         }
 
-        private static string Base64Decode(string str)
+        internal static string TransformEncode(byte[] bytes)
+        {
+            string answer = Convert.ToBase64String(bytes);
+            return answer;
+        }
+
+        internal static string TransformDecode(string str)
         {
             byte[] bytes = Convert.FromBase64String(str);
-            return Encoding.UTF8.GetString(bytes);
+            return TransformDecode(bytes);
+        }
+
+        internal static string TransformDecode(byte[] bytes)
+        {
+            string answer = encoding.GetString(bytes);
+            return answer;
         }
 
         internal static byte[] GetBytes(string str)
         {
-            string base64 = Base64Encode(str);
-            return Encoding.UTF8.GetBytes(base64);
+            byte[] answer = encoding.GetBytes(str);
+            return answer;
         }
 
         internal static string GetString(byte[] bytes)
         {
-            string base64 = Encoding.UTF8.GetString(bytes);
-            return Base64Decode(base64);
+            string answer = encoding.GetString(bytes);
+            return answer;
         }
     }
 }

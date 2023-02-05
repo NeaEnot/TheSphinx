@@ -2,7 +2,7 @@
 {
     internal interface ICrypto
     {
-        byte[] Encrypt(byte[] bytes, string password);
-        byte[] Decrypt(byte[] bytes, string password);
+        string Encrypt(string text, string password);
+        string Decrypt(string text, string password);
     }
 }

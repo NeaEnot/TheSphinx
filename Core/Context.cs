@@ -41,10 +41,9 @@ namespace TheSphinx.Core
             };
 
             string json = JsonConvert.SerializeObject(storage);
-            byte[] data = StringConverter.GetBytes(json);
-            byte[] encoded = Crypto.Encrypt(data, StoragePassword);
+            string encoded = Crypto.Encrypt(json, StoragePassword);
 
-            File.WriteAllBytes("storage.dat", encoded);
+            File.WriteAllText("storage.dat", encoded);
         }
 
         internal void Load()
@@ -63,9 +62,8 @@ namespace TheSphinx.Core
                 try
                 {
 
-                    byte[] encoded = File.ReadAllBytes("storage.dat");
-                    byte[] data = Crypto.Decrypt(encoded, StoragePassword);
-                    string json = Encoding.Default.GetString(data);
+                    string encoded = File.ReadAllText("storage.dat");
+                    string json = Crypto.Decrypt(encoded, StoragePassword);
 
                     Storage restored = JsonConvert.DeserializeObject<Storage>(json);
 
