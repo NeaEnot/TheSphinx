@@ -41,7 +41,7 @@ namespace TheSphinx.Core
             };
 
             string json = JsonConvert.SerializeObject(storage);
-            byte[] data = Encoding.Default.GetBytes(json);
+            byte[] data = StringConverter.GetBytes(json);
             byte[] encoded = Crypto.Encrypt(data, StoragePassword);
 
             File.WriteAllBytes("storage.dat", encoded);
