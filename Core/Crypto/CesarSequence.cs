@@ -37,18 +37,20 @@ namespace TheSphinx.Core.Crypto
             }
 
             return StringConverter.TransformEncode(answer);
+            //return answer;
         }
 
         public string Decrypt(string text, string password)
         {
             string answer = "";
 
+            //string str = text;
             string str = StringConverter.TransformDecode(text);
             int k = 0;
 
             for (int i = 0; i < str.Length; i++)
             {
-                char t = text[i];
+                char t = str[i];
                 char p = password[k];
 
                 char a = ' ';

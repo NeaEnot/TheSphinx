@@ -21,7 +21,7 @@ namespace TheSphinx.Core.Logic
                             Value =
                                 model.Fields[key].Encrypted
                                 ?
-                                Context.Instance.Crypto.Encrypt(model.Fields[key].Value, password)
+                                Context.Instance.CryptoFields.Encrypt(model.Fields[key].Value, password)
                                 :
                                 model.Fields[key].Value,
                             Encrypted = model.Fields[key].Encrypted
@@ -47,7 +47,7 @@ namespace TheSphinx.Core.Logic
                             Value =
                                 Context.Instance.User.Fields[key].Encrypted && password != null
                                 ?
-                                Context.Instance.Crypto.Decrypt(Context.Instance.User.Fields[key].Value, password)
+                                Context.Instance.CryptoFields.Decrypt(Context.Instance.User.Fields[key].Value, password)
                                 :
                                 Context.Instance.User.Fields[key].Value,
                             Encrypted = Context.Instance.User.Fields[key].Encrypted

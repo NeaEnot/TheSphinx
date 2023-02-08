@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using TheSphinx.Core.Crypto;
 using TheSphinx.Core.Helpers;
 using TheSphinx.Core.Models;
@@ -29,7 +28,8 @@ namespace TheSphinx.Core
         internal User User { get; set; }
         internal List<Account> Accounts { get; set; }
 
-        internal ICrypto Crypto { get; private set; } = new AesCrypto();
+        internal ICrypto CryptoStorage { get; private set; } = new AesCrypto();
+        internal ICrypto CryptoFields { get; private set; } = new CesarSequence((char)500);
 
         internal void Save()
         {
@@ -41,7 +41,7 @@ namespace TheSphinx.Core
             };
 
             string json = JsonConvert.SerializeObject(storage);
-            string encoded = Crypto.Encrypt(json, StoragePassword);
+            string encoded = CryptoStorage.Encrypt(json, StoragePassword);
 
             File.WriteAllText("storage.dat", encoded);
         }
@@ -63,7 +63,7 @@ namespace TheSphinx.Core
                 {
 
                     string encoded = File.ReadAllText("storage.dat");
-                    string json = Crypto.Decrypt(encoded, StoragePassword);
+                    string json = CryptoStorage.Decrypt(encoded, StoragePassword);
 
                     Storage restored = JsonConvert.DeserializeObject<Storage>(json);
 
