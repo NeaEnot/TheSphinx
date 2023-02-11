@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -36,14 +37,14 @@ namespace TheSphinx.Core.Crypto
                 encrypted = ms.ToArray();
             }
 
-            string answer = encoding.GetString(encrypted.Concat(aes.IV).ToArray());
+            string answer = Convert.ToBase64String(encrypted.Concat(aes.IV).ToArray());
 
             return answer;
         }
 
         public string Decrypt(string text, string password)
         {
-            byte[] bytes = encoding.GetBytes(text);
+            byte[] bytes = Convert.FromBase64String(text);
 
             byte[] bytesIv = new byte[16];
             byte[] data = new byte[bytes.Length - 16];

@@ -59,7 +59,8 @@ namespace YandexDisk
             try
             {
                 User user = userLogic.Get(getPassword());
-                diskApi.Files.UploadFileAsync(user.Fields["path"].Value, true, path, CancellationToken.None).Wait();
+                string cloudPath = user.Fields["path"].Value.Replace("\0", "");
+                diskApi.Files.UploadFileAsync(cloudPath, true, path, CancellationToken.None).Wait();
             }
             catch (Exception ex)
             {

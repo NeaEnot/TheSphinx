@@ -30,6 +30,7 @@ namespace TheSphinx.Core
 
         internal ICrypto CryptoStorage { get; private set; } = new AesCrypto();
         internal ICrypto CryptoFields { get; private set; } = new AesCrypto();
+        //internal ICrypto CryptoStorage { get; private set; } = new CesarSequence((char)500);
         //internal ICrypto CryptoFields { get; private set; } = new CesarSequence((char)500);
 
         internal void Save()
