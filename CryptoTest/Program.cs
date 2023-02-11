@@ -1,18 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace TheSphinx.Core.Crypto
+namespace CryptoTest
 {
-    internal class AesCrypto : ICrypto
+    internal class Program
     {
-        private static Encoding encoding = Encoding.Latin1;
-        private static CipherMode cipherMode = CipherMode.CBC;
-        private static PaddingMode paddingMode = PaddingMode.Zeros;
+        static Encoding encoding = Encoding.Latin1;
+        static CipherMode cipherMode = CipherMode.CBC;
+        static PaddingMode paddingMode = PaddingMode.Zeros;
 
-        public string Encrypt(string text, string password)
+        static void Main(string[] args)
+        {
+            string password = "test";
+            string text = "asdasdas oado awhfayig daosdfiq -0471 3u4108 3108 43129 384 1eo2e201873 1 02173 `0238 17 4123i 80779 wq80723 132 87 ds";
+            Console.WriteLine($"Original: {text}");
+
+            string encoded = Encrypt(text, password);
+            Console.WriteLine($"Encoded: {encoded}");
+
+            File.WriteAllText("test.dat", encoded);
+            string readedEnc = File.ReadAllText("test.dat");
+
+            string decoded = Decrypt(readedEnc, password);
+            Console.WriteLine($"Decoded: {decoded}");
+        }
+
+        private static byte[] GetKey(string key)
+        {
+            using SHA256 sha256 = SHA256.Create();
+            return sha256.ComputeHash(encoding.GetBytes(key));
+        }
+
+        static string Encrypt(string text, string password)
         {
             Aes aes = Aes.Create();
             aes.Mode = cipherMode;
@@ -41,7 +64,7 @@ namespace TheSphinx.Core.Crypto
             return answer;
         }
 
-        public string Decrypt(string text, string password)
+        static string Decrypt(string text, string password)
         {
             byte[] bytes = encoding.GetBytes(text);
 
@@ -76,12 +99,6 @@ namespace TheSphinx.Core.Crypto
                     return encoding.GetString(decrypted.ToArray());
                 }
             }
-        }
-
-        private byte[] GetKey(string key)
-        {
-            using SHA256 sha256 = SHA256.Create();
-            return sha256.ComputeHash(encoding.GetBytes(key));
         }
     }
 }
