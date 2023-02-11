@@ -12,7 +12,7 @@ namespace TheSphinx.GUI.Views
         {
             InitializeComponent();
 
-            model = new UserViewModel(user, App.NetworkLogic.RequiredFields);
+            //model = new UserViewModel(user, App.NetworkLogic.RequiredFields);
             DataContext = model;
         }
 

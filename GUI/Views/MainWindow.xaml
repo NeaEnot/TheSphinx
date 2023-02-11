@@ -13,12 +13,12 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0">
-            <MenuItem Header="User settings" Click="MenuItemUser_Click"/>
+            <!--<MenuItem Header="User settings" Click="MenuItemUser_Click"/>-->
             <MenuItem Header="Drop fields password" Click="MenuItemDrop_Click"/>
-            <MenuItem Header="Syncronization">
+            <!--<MenuItem Header="Syncronization">
                 <MenuItem Header="Download" Click="MenuItemDownoad_Click"/>
                 <MenuItem Header="Upload" Click="MenuItemUpload_Click"/>
-            </MenuItem>
+            </MenuItem>-->
         </Menu>
 
         <TextBox Grid.Row="1" Name="tbSearch" Margin="10,10,50,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
