@@ -46,6 +46,11 @@ namespace TheSphinx.GUI
             }
         }
 
+        internal void DropPassword()
+        {
+            lastPasswordEnter = DateTime.MinValue;
+        }
+
         internal enum PasswordType
         {
             general,

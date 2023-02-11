@@ -167,5 +167,10 @@ namespace TheSphinx.GUI.Views
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void MenuItemDrop_Click(object sender, RoutedEventArgs e)
+        {
+            App.PasswordController.DropPassword();
+        }
     }
 }

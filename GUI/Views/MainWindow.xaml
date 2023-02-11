@@ -14,6 +14,7 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="User settings" Click="MenuItemUser_Click"/>
+            <MenuItem Header="Drop fields password" Click="MenuItemDrop_Click"/>
             <MenuItem Header="Syncronization">
                 <MenuItem Header="Download" Click="MenuItemDownoad_Click"/>
                 <MenuItem Header="Upload" Click="MenuItemUpload_Click"/>
