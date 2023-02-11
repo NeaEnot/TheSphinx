@@ -3,100 +3,100 @@
 	<members name="AccountLogic">
 		<AccountLogic>
 			<summary>
-				Класс, позволяющий взаимодействовать с аккаунтами в хранилище.
+				A class that allows you to interact with accounts in the repository.
 			</summary>
 		</AccountLogic>
 		<Create>
 			<summary>
-				Добавляет в хранилище новый аккаунт, шифрует поля, помеченные как Encripted.
+				Adds a new account to the repository, encrypts the fields marked as Encrypted.
 			</summary>
 			<param name="model">
-				Добавляемая модель.
+				The model being added.
 			</param>
 			<param name="password">
-				Пароль для шифрования полей.
+				Password for encrypting fields.
 			</param>
 		</Create>
 		<ReadAll>
 			<summary>
-				Возвращает список всех аккаунтов в хранилище.
+				Returns a list of all accounts in the vault.
 			</summary>
 			<returns>
-				Список аккаунтов без полей.
+				A list of accounts without fields.
 			</returns>
 		</ReadAll>
 		<Read>
 			<summary>
-				Возвращает аккаунт по id, пытается расшифровать поля, помеченные как Encripted.
+				Returns the account by id, tries to decrypt the fields marked as Encrypted.
 			</summary>
 			<param name="id">
-				Id требуемого аккаунта.
+				Id of the required account.
 			</param>
 			<param name="password">
-				Пароль для расшифрования полей, если null - расшифровка производится не будет. По умолчанию null.
+				Password for decrypting fields, if null - decryption will not be performed. Null by default.
 			</param>
 			<returns>
-				Аккаунт.
+				Account.
 			</returns>
 		</Read>
 		<Update>
 			<summary>
-				Изменяет данные аккаунта в хранилище, шифрует поля, помеченные как Encripted.
+				Modifies the account data in the storage, encrypts the fields marked as Encrypted.
 			</summary>
 			<param name="model">
-				Изменяемая модель.
+				The model being modified.
 			</param>
 		</Update>
 		<Delete>
 			<summary>
-				Удаляет аккаунт по id.
+				Deletes an account by id.
 			</summary>
 			<param name="id">
-				Id аккаунта, который необходимо удалить.
+				Id of the account to delete.
 			</param>
 		</Delete>
 	</members>
 	<members name="UserLogic">
 		<UserLogic>
 			<summary>
-				Класс, позволяющий взаимодействовать с данными пользователя, необходимыми для подключения к облаку.
+				A class that allows you to interact with user data required to connect to the cloud.
 			</summary>
 		</UserLogic>
 		<Set>
 			<summary>
-				Устанавливает данные для подключения к облаку и сохраняет их в хранилище, шифрует поля, помеченные как Encripted.
+				Installs data to connect to the cloud and stores it in storage, encrypts fields marked as Encrypted.
 			</summary>
 			<param name="model">
-				Данные.
+				Data.
 			</param>
 			<param name="password">
-				Пароль для шифрования полей.
+				Password for encrypting fields.
 			</param>
 		</Set>
 		<Get>
 			<summary>
-				Возвращает данные для подключения к облаку, пытается расшифровать поля, помеченные как Encripted.
+				Returns data for connecting to the cloud, tries to decrypt fields marked as Encrypted.
 			</summary>
 			<param name="password">
-				Пароль для расшифрования полей, если null - расшифровка производится не будет. По умолчанию null.
+				Password for decrypting fields, if null - decryption will not be performed. Null by default.
 			</param>
 			<returns>
-				Данные для подключения к облаку.
+				Data for connecting to the cloud.
 			</returns>
 		</Get>
 	</members>
 	<members name="ContextInitializer">
 		<ContextInitializer>
 			<summary>
-				Класс, отвечающий за инициализацию контекста хранилища и проверку пароля хранилища.
+				The class responsible for initializing the storage context and verifying the storage password.
 			</summary>
 		</ContextInitializer>
 		<Initialize>
 			<summary>
-				Инициализирует контекст и пытается загрузить данные из хранилища.
+				Initializes the context and tries to load data from storage.
 			</summary>
 			<param name="storagePassword">
-				Пароль от хранилища.
+				Password from the vault.
 			</param>
 		</Initialize>
 	</members>

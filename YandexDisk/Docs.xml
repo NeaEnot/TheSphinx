@@ -4,19 +4,19 @@
 		<NetworkLogic>
 			<summary>
 				<para>
-					Реализация интерфейса INetworkLogic, предназначенная для сервиса Яндекс.Диск.
+					Implementation of the INetworkLogic interface designed for the Yandex.Disk service.
 				</para>
 				<para>
-					Для корректной работы у пользователя должны быть заполнены поля token и path - токеном доступа к сервису и путём файла на облаке соответственно.
+					For the user to work correctly, the token and path fields must be filled in with the service access token and the file path on the cloud, respectively.
 				</para>
 			</summary>
 		</NetworkLogic>
 		<Constructor>
 			<summary>
-				Конструктор, создающий объект сетевой логики.
+				A constructor that creates a network logic object.
 			</summary>
 			<param name="getPassword">
-				Делегат, возвращающий пароль от полей.
+				The delegate that returns the password from the fields.
 			</param>
 		</Constructor>
 	</members>

@@ -3,51 +3,51 @@
 	<members name="Field">
 		<Field>
 			<summary>
-				Модель поля данных аккаунта.
+				The model of the account data field.
 			</summary>
 		</Field>
 		<Value>
 			<summary>
-				Значение поля.
+				The value of the field.
 			</summary>
 		</Value>
 		<Encrypted>
 			<summary>
-				Необходимо ли шифровать поле.
+				Whether the field needs to be encrypted.
 			</summary>
 		</Encrypted>
 	</members>
 	<members name="User">
 		<User>
 			<summary>
-				Модель данных, необходимых для подключения к облаку.
+				The data model required to connect to the cloud.
 			</summary>
 		</User>
 		<Fields>
 			<summary>
-				Словарь, содержащий поля, необходимые для подкючения к облаку.
+				A dictionary containing the fields required to connect to the cloud.
 			</summary>
 		</Fields>
 	</members>
 	<members name="Account">
 		<Account>
 			<summary>
-				Модель, хранящая данные аккаунта.
+				The model that stores the account data.
 			</summary>
 		</Account>
 		<Id>
 			<summary>
-				Уникальный идентификатор аккаунта.
+				Unique account ID.
 			</summary>
 		</Id>
 		<Source>
 			<summary>
-				Ресурс, на котором создан аккаунт.
+				The resource where the account was created.
 			</summary>
 		</Source>
 		<Fields>
 			<summary>
-				Поля с информацией об аккаунте.
+				Fields with account information.
 			</summary>
 		</Fields>
 	</members>

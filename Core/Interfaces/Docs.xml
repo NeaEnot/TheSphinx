@@ -3,36 +3,36 @@
 	<members name="INetworkLogic">
 		<INetworkLogic>
 			<summary>
-				Интерфейс работы с облаком.
+				The interface for working with the cloud.
 			</summary>
 		</INetworkLogic>
 		<RequiredFields>
 			<summary>
-				Массив наименований требуемых полей.
+				Array of names of required fields.
 			</summary>
 		</RequiredFields>
 		<Connect>
 			<summary>
-				Подключение к облаку.
+				Connecting to the cloud.
 			</summary>
 			<param name="getCode">
-				Делегат, позволяющий запросить код при необходимости.
+				A delegate that allows you to request the code if necessary.
 			</param>
 		</Connect>
 		<Download>
 			<summary>
-				Скачивание данных из облака.
+				Downloading data from the cloud.
 			</summary>
 			<param name="path">
-				Путь к файлу хранилища.
+				The path to the local storage file.
 			</param>
 		</Download>
 		<Upload>
 			<summary>
-				Загрузка данных на облако.
+				Uploading data to the cloud.
 			</summary>
 			<param name="path">
-				Путь к файлу хранилища.
+				The path to the local storage file.
 			</param>
 		</Upload>
 	</members>
